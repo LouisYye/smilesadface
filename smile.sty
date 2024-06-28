@@ -1,0 +1,30 @@
+\usepackage{tikz}
+\usepackage{lipsum}
+
+\usetikzlibrary{shapes.callouts, calc}
+\newcommand\SadSetup[3]{%
+\foreach \n in {1,...,#2}{
+\pgfdeclareimage[width=#3,page=\n]{Sad\n}{#1}}
+\def\sadfacepages{#2}}
+
+\newcommand\HappySetup[3]{%
+\foreach \n in {1,...,#2}{
+\pgfdeclareimage[width=#3,page=\n]{Happy\n}{#1}}
+\def\happyfacepages{#2}}
+
+
+\newcommand\usesadface[1]{%
+    \tikz[baseline=(image.base)]{
+        \node[inner sep=0pt] (image) {\pgfuseimage{Sad#1}};
+    }
+}
+
+\newcommand\usehappyface[1]{%
+    \tikz[baseline=(image.base)]{
+        \node[inner sep=0pt] (image) {\pgfuseimage{Happy#1}};
+    }
+}
+
+% import the pdf from the folder, number of pages, and size of the image
+\SadSetup{smilesadpack/Sad.pdf}{11}{0.5cm}
+\HappySetup{smilesadpack/Happy.pdf}{11}{0.5cm}
